@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import EmailForm from './components/EmailForm';
+import X from './components/X';
 
-function App() {
+const App = () => {
+  // Email bilgisini tutacak state'i tanımla
+  const [submittedEmail, setSubmittedEmail] = React.useState('');
+
+  // Form tarafından çağrılacak callback fonksiyonunu oluştur
+  const handleEmailSubmit = (email) => {
+    // Email bilgisini state'e kaydet
+    setSubmittedEmail(email);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <EmailForm onEmailSubmit={handleEmailSubmit} />
+      <X submittedEmail={submittedEmail} />
     </div>
   );
-}
+};
 
 export default App;
